@@ -1,0 +1,57 @@
+body {
+    background-color: #81259D;
+    display: flex;
+}
+p {
+    font-family: 'Roboto', sans-serif;
+}
+.container {
+    background: #FFFFFF;
+    margin: auto;
+    height: 400px;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 0 1.8rem rgba(0,0,0,.15);
+    padding: 40px;
+}
+.container h1 {
+    text-align: center;
+}
+form {
+    margin: 20px;
+}
+input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 0;
+    border-bottom: 1px dotted #cacaca;
+    font-size: 18px;
+    color: #cacaca;
+    padding-left: 0;
+    color: black;
+}
+.btn {
+    width: 100%;
+    border: 1px solid #cacaca;
+    padding: 20px;
+    margin-bottom: 10px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #cacaca;;
+}
+.btn:hover {
+    color: #000000;
+    cursor: grab;
+}
+#logo {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+}
+p {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
