@@ -8,7 +8,7 @@ if(isset($_SESSION['banco']) && !empty($_SESSION['banco'])) {
     header("Location: login.php");
 }
 
-if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
+if(isset($_POST['tipo'])) {
     $tipo = $_POST['tipo'];
     $valor = str_replace(",",".", $_POST['valor']);
     $valor = floatval($valor);
@@ -19,6 +19,18 @@ if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
     $sql->bindValue(":valor", $valor);
     $sql->execute();
     header("Location: index.php");
+
+    if($tipo == '0') {
+        $sql = $pdo->prepare("UPDATE contas SET saldo = saldo + :valor WHERE id = :id");
+        $sql->bindValue(":valor", $valor);
+        $sql->bindValue(":id", $_SESSION['banco']);
+        $sql->execute();
+    } else {
+        $sql = $pdo->prepare("UPDATE contas SET saldo = saldo - :valor WHERE id = :id");
+        $sql->bindValue(":valor", $valor);
+        $sql->bindValue(":id", $_SESSION['banco']);
+        $sql->execute();
+    }
 
 }
 ?>
@@ -46,7 +58,7 @@ if(isset($_POST['tipo']) && !empty($_POST['tipo'])) {
                     </select></br>
                     Valor:</br>
                     <input type="text" name="valor" pattern="[0-9.,]{1,}"/>
-                    <input type="submit" value="Adicionar"/> 
+                    <input type="submit" class="btn" value="Adicionar"/> 
                 </form>
             </div>
         </div>

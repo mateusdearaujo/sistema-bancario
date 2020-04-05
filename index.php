@@ -38,6 +38,7 @@ if(isset($_SESSION['banco']) && !empty($_SESSION['banco'])) {
         <a href="sair.php">Sair</a>
         <hr>
         <h2>Extrato</h2>
+        <a href="add-transacao.php">Adicionar Transação</a></br></br>
         <table>
             <thead>
                 <tr>
@@ -45,7 +46,7 @@ if(isset($_SESSION['banco']) && !empty($_SESSION['banco'])) {
                     <th>Valor</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class='historic-table'>
                 <?php
                     $sql = $pdo->prepare("SELECT * FROM historico WHERE id_conta = :id_conta");
                     $sql->bindValue(':id_conta', $id);
@@ -54,8 +55,15 @@ if(isset($_SESSION['banco']) && !empty($_SESSION['banco'])) {
                     if($sql->rowCount() > 0) {
                         foreach($sql->fetchAll() as $item) {
                             echo "<tr>";
-                            echo "<td>".$item['data_operacao']."</td>";
-                            echo "<td>".$item['valor']."</td>";
+                            echo "<td>";
+                            echo date('d/m/Y H:i', strtotime($item['data_operacao']))."</td>";
+                            
+                            if($item['tipo'] == 0) {
+                                echo "<td><span style='color: green;'> R$ ".number_format($item['valor'], 2, ',', '.')."</span></td>";
+                            } else {
+                                echo "<td><span style='color: red;'> - R$ ".number_format($item['valor'], 2, ',', '.')."</span></td>";
+                            }
+
                             echo "</tr>";
                         }
                     }
