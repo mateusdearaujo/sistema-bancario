@@ -8,13 +8,13 @@ p {
 .container {
     background: #FFFFFF;
     margin: auto;
-    height: 400px;
+    height: 100%;
     width: 400px;
     border-radius: 8px;
     box-shadow: 0 0 1.8rem rgba(0,0,0,.15);
     padding: 40px;
 }
-.container h1 {
+.container h1, h2 {
     text-align: center;
 }
 form {
@@ -57,4 +57,8 @@ p {
 }
 table {
     width: 100%;
+}
+.historic-table td {
+    border-bottom: 1px dotted #000000;
+    padding: 6px;
 }
